@@ -1,0 +1,57 @@
+name: CI/CD to On-Prem Kubernetes with Helm
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📦 소스 코드 체크아웃
+        uses: actions/checkout@v4
+
+      - name: ☕️ JDK 17 설정
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: 🛠 application.yml 생성
+        run: |
+          mkdir -p ./src/main/resources
+          echo "${{ secrets.APPLICATION }}" > ./src/main/resources/application.yml
+
+      - name: ⚡ Gradle Build (테스트 제외)
+        run: ./gradlew build -x test
+
+      - name: 🐳 Docker Build & Push to Docker Hub
+        run: |
+          echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/admin-prod:latest .
+          docker push ${{ secrets.DOCKER_USERNAME }}/admin-prod:latest
+          docker logout
+
+      - name: 🚀 Helm을 통한 쿠버네티스 배포
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.K8S_HOST }}
+          port: 8088
+          username: toni
+          key: ${{ secrets.K8S_PRIVATE_KEY }}
+          script: |
+            export KUBECONFIG=/home/toni/.kube/config
+
+            echo "✅ 쿠버네티스 연결 테스트"
+            kubectl get nodes
+
+            echo "📦 Helm 차트 배포"
+            helm upgrade --install admin-prod ./helm/admin-prod \
+              --namespace default \
+              --create-namespace \
+              --set image.repository=${{ secrets.DOCKER_USERNAME }}/admin-prod \
+              --set image.tag=latest \
+              --set env.application="$(echo "${{ secrets.APPLICATION }}" | base64 -w 0)"
+
+            echo "🎉 배포 완료"
