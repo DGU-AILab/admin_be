@@ -1,4 +1,4 @@
-package nova.backend.global.common;
+package DGU_AI_LAB.admin_be.global.common;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
