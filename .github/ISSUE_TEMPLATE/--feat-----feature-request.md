@@ -2,7 +2,7 @@
 name: "[ feat ] - feature request"
 about: "✨ Feature Template"
 title: "[ \bfeat ] "
-labels: ''
+labels: "✨ feature"
 assignees: ''
 
 ---

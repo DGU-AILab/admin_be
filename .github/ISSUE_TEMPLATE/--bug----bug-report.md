@@ -2,7 +2,7 @@
 name: "[ bug ] -bug report"
 about: "❗ Bug Template"
 title: "[ bug ] "
-labels: ''
+labels: "\U0001F41B bug"
 assignees: ''
 
 ---
