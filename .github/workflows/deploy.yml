@@ -41,6 +41,7 @@ jobs:
           username: toni
           key: ${{ secrets.K8S_PRIVATE_KEY }}
           script: |
+            set -e # 실패 시 즉시 중단
             export KUBECONFIG=/home/toni/.kube/config
 
             echo "✅ 쿠버네티스 연결 테스트"
@@ -52,7 +53,7 @@ jobs:
               --create-namespace \
               --set image.repository=${{ secrets.DOCKER_USERNAME }}/admin-prod \
               --set image.tag=latest \
-              --set env.application="$(echo "${{ secrets.APPLICATION }}" | base64 -w 0)"
+              --set env.application="$(echo "${{ secrets.APPLICATION }}" | base64 -w 0)" \
               --set args[0]="--spring.profiles.active=prod" \
               --set forceReload=$(date +%s)
 
