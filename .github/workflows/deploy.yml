@@ -41,20 +41,20 @@ jobs:
           username: toni
           key: ${{ secrets.K8S_PRIVATE_KEY }}
           script: |
-              export KUBECONFIG=/home/toni/.kube/config
+            set -e # 실패 시 즉시 중단
+            export KUBECONFIG=/home/toni/.kube/config
 
-              echo "✅ 쿠버네티스 연결 테스트"
-              kubectl get nodes
+            echo "✅ 쿠버네티스 연결 테스트"
+            kubectl get nodes
 
-              echo "📦 Helm 차트 배포 (절대 경로 사용)"
-              helm upgrade --install admin-prod /home/toni/admin_be/helm/admin-prod \
-                --namespace default \
-                --create-namespace \
-                --set image.repository=${{ secrets.DOCKER_USERNAME }}/admin-prod \
-                --set image.tag=latest \
-                --set env.application="$(echo "${{ secrets.APPLICATION }}" | base64 -w 0)" \
-                --set args[0]="--spring.profiles.active=prod" \
-                --set forceReload=$(date +%s)
-            
-              echo "🎉 배포 완료"
+            echo "📦 Helm 차트 배포 (절대 경로 사용)"
+            helm upgrade --install admin-prod /home/toni/admin_be/helm/admin-prod \
+              --namespace default \
+              --create-namespace \
+              --set image.repository=${{ secrets.DOCKER_USERNAME }}/admin-prod \
+              --set image.tag=latest \
+              --set env.application="$(echo "${{ secrets.APPLICATION }}" | base64 -w 0)" \
+              --set args[0]="--spring.profiles.active=prod" \
+              --set forceReload=$(date +%s)
 
+            echo "🎉 배포 완료"
