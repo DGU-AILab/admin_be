@@ -13,5 +13,5 @@ import lombok.Setter;
 @NoArgsConstructor
 public class UsedId {
     @Id
-    private Integer id;
+    private Long id;
 }
