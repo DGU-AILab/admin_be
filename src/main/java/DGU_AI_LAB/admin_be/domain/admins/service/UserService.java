@@ -1,9 +1,9 @@
-package DGU_AI_LAB.admin_be.domain.user.service;
+package DGU_AI_LAB.admin_be.domain.admins.service;
 
 
-import DGU_AI_LAB.admin_be.domain.user.dto.request.UserLoginRequestDTO;
-import DGU_AI_LAB.admin_be.domain.user.entity.User;
-import DGU_AI_LAB.admin_be.domain.user.repository.UserRepository;
+import DGU_AI_LAB.admin_be.domain.admins.dto.request.UserLoginRequestDTO;
+import DGU_AI_LAB.admin_be.domain.admins.entity.User;
+import DGU_AI_LAB.admin_be.domain.admins.repository.UserRepository;
 import DGU_AI_LAB.admin_be.error.ErrorCode;
 import DGU_AI_LAB.admin_be.error.exception.InvalidValueException;
 import lombok.RequiredArgsConstructor;

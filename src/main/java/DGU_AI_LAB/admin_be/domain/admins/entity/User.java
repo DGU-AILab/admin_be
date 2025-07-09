@@ -1,4 +1,4 @@
-package DGU_AI_LAB.admin_be.domain.user.entity;
+package DGU_AI_LAB.admin_be.domain.admins.entity;
 
 import DGU_AI_LAB.admin_be.global.common.BaseTimeEntity;
 import jakarta.persistence.*;

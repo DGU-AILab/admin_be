@@ -1,9 +1,9 @@
-package DGU_AI_LAB.admin_be.domain.user.controller;
+package DGU_AI_LAB.admin_be.domain.admins.controller;
 
-import DGU_AI_LAB.admin_be.domain.user.dto.request.UserLoginRequestDTO;
-import DGU_AI_LAB.admin_be.domain.user.dto.response.UserTokenResponseDTO;
-import DGU_AI_LAB.admin_be.domain.user.service.UserLoginService;
-import DGU_AI_LAB.admin_be.domain.user.service.UserService;
+import DGU_AI_LAB.admin_be.domain.admins.dto.request.UserLoginRequestDTO;
+import DGU_AI_LAB.admin_be.domain.admins.dto.response.UserTokenResponseDTO;
+import DGU_AI_LAB.admin_be.domain.admins.service.UserLoginService;
+import DGU_AI_LAB.admin_be.domain.admins.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
