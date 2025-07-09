@@ -1,5 +1,6 @@
 package DGU_AI_LAB.admin_be.domain.alarm.service;
 
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
@@ -15,6 +16,7 @@ import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
+@Log4j2
 public class AlarmService {
 
     @Value("${slack-webhook-url.monitoring}")
@@ -42,9 +44,9 @@ public class AlarmService {
         ResponseEntity<String> response = restTemplate.postForEntity(urlToUse, request, String.class);
 
         if (!response.getStatusCode().is2xxSuccessful()) {
-            System.err.println("Slack 알림 전송 실패: " + response.getStatusCode());
+            log.debug("Slack 알림 전송 실패: {}", response.getStatusCode());
         } else {
-            System.out.println("Slack 알림 전송 성공");
+            log.debug("Slack 알림 전송 성공");
         }
     }
     public void sendMailAlert(String to, String subject, String body) {
