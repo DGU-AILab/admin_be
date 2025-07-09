@@ -1,8 +1,8 @@
-package DGU_AI_LAB.admin_be.domain.user.service;
+package DGU_AI_LAB.admin_be.domain.admins.service;
 
-import DGU_AI_LAB.admin_be.domain.user.dto.request.UserTokenRequestDTO;
-import DGU_AI_LAB.admin_be.domain.user.dto.response.UserTokenResponseDTO;
-import DGU_AI_LAB.admin_be.domain.user.repository.UserRepository;
+import DGU_AI_LAB.admin_be.domain.admins.dto.request.UserTokenRequestDTO;
+import DGU_AI_LAB.admin_be.domain.admins.dto.response.UserTokenResponseDTO;
+import DGU_AI_LAB.admin_be.domain.admins.repository.UserRepository;
 import DGU_AI_LAB.admin_be.error.exception.UnauthorizedException;
 import DGU_AI_LAB.admin_be.global.auth.jwt.JwtProvider;
 import com.fasterxml.jackson.core.JsonProcessingException;

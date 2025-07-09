@@ -1,7 +1,7 @@
 package DGU_AI_LAB.admin_be.global.auth;
 
-import DGU_AI_LAB.admin_be.domain.user.entity.User;
-import DGU_AI_LAB.admin_be.domain.user.repository.UserRepository;
+import DGU_AI_LAB.admin_be.domain.admins.entity.User;
+import DGU_AI_LAB.admin_be.domain.admins.repository.UserRepository;
 import DGU_AI_LAB.admin_be.error.ErrorCode;
 import DGU_AI_LAB.admin_be.error.exception.UnauthorizedException;
 import lombok.RequiredArgsConstructor;

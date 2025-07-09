@@ -1,6 +1,6 @@
 package DGU_AI_LAB.admin_be.global.auth.jwt;
 
-import DGU_AI_LAB.admin_be.domain.user.entity.User;
+import DGU_AI_LAB.admin_be.domain.admins.entity.User;
 import DGU_AI_LAB.admin_be.error.ErrorCode;
 import DGU_AI_LAB.admin_be.error.exception.UnauthorizedException;
 import DGU_AI_LAB.admin_be.global.auth.SecurityWhitelist;

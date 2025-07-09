@@ -1,6 +1,6 @@
-package DGU_AI_LAB.admin_be.domain.user.repository;
+package DGU_AI_LAB.admin_be.domain.admins.repository;
 
-import DGU_AI_LAB.admin_be.domain.user.entity.User;
+import DGU_AI_LAB.admin_be.domain.admins.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
