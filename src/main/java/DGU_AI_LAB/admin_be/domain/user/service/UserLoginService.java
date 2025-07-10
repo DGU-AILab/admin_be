@@ -28,7 +28,7 @@ public class UserLoginService {
 
     public UserTokenResponseDTO login(UserLoginRequestDTO request) {
         User user = userRepository.findByName(request.name())
-                .orElseThrow(() -> new UnauthorizedException(ErrorCode.INVALID_LOGIN_INFO));
+                .orElseThrow(() -> new UnauthorizedException(ErrorCode.USER_NOT_FOUND));
 
         if (!passwordEncoder.matches(request.password(), user.getPassword())) {
             throw new UnauthorizedException(ErrorCode.INVALID_LOGIN_INFO);
