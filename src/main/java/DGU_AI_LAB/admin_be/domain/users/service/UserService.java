@@ -54,9 +54,7 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-
-
-
+    // 사용하지 않는 다음 Uid, Gid 를 가져오기 위함
     @Transactional
     public Long allocateNextAvailableUidGid() {
         int base = 10000;
