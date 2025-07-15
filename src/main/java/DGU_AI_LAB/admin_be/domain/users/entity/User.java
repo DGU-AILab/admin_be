@@ -1,18 +1,20 @@
 package DGU_AI_LAB.admin_be.domain.users.entity;
 
+import DGU_AI_LAB.admin_be.global.common.BaseTimeEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
 @Getter
 @Setter
 @NoArgsConstructor
-public class User {
+public class User extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,15 +29,14 @@ public class User {
     @Column(name = "is_active", nullable = false)
     private Boolean isActive = true;
 
-    @Column(name = "created_at", nullable = false, updatable = false)
-    private LocalDateTime createdAt;
-
-    @Column(name = "updated_at", nullable = false)
-    private LocalDateTime updatedAt;
-
     @ManyToOne
     @JoinColumn(name = "resource_group_id", nullable = false)
     private ResourceGroup resourceGroup;
+
+    // 한 명의 유저가 여러 개의 키를 사용할 수 있음.
+    // 여러 PC에서 접속하면 그만큼 키의 수가 늘어남.
+    @OneToMany(mappedBy = "user")
+    private List<UserKey> userKeys;
 
     @PrePersist
     protected void onCreate() {
