@@ -29,6 +29,7 @@ public class UserKey extends BaseTimeEntity {
     @Column(name = "key_name")
     private String keyName;
 
+    @Builder.Default
     @Column(name = "is_active", nullable = false)
     private Boolean isActive = true;
 

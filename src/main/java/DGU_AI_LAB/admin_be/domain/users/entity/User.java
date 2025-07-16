@@ -26,6 +26,7 @@ public class User extends BaseTimeEntity {
     private String password;
 
     @Column(name = "is_active", nullable = false)
+    @Builder.Default
     private Boolean isActive = true;
 
     public void updateUserInfo(String username, String password, Boolean isActive) {
