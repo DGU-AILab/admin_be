@@ -1,6 +1,6 @@
 package DGU_AI_LAB.admin_be.global.auth.jwt;
 
-import DGU_AI_LAB.admin_be.domain.user.entity.User;
+import DGU_AI_LAB.admin_be.domain.admins.entity.Admin;
 import DGU_AI_LAB.admin_be.error.ErrorCode;
 import DGU_AI_LAB.admin_be.error.exception.UnauthorizedException;
 import DGU_AI_LAB.admin_be.global.auth.SecurityWhitelist;
@@ -51,13 +51,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             jwtProvider.validateAccessToken(accessToken);
             log.info("[JwtAuthFilter] AccessToken 유효성 검사 통과");
 
-            final Long userId = jwtProvider.getSubject(accessToken);
-            log.info("[JwtAuthFilter] 토큰에서 추출한 userId: {}", userId);
-
-            User user = authService.loadUserEntityById(userId);
+            final Long adminId = jwtProvider.getSubject(accessToken);
+            Admin admin = authService.loadAdminEntityById(adminId);
 
             UsernamePasswordAuthenticationToken authentication =
-                    new UsernamePasswordAuthenticationToken(user, null, Collections.emptyList());
+                    new UsernamePasswordAuthenticationToken(admin, null, Collections.emptyList());
             authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
             SecurityContextHolder.getContext().setAuthentication(authentication);
 

@@ -1,4 +1,4 @@
-package DGU_AI_LAB.admin_be.domain.user.dto.request;
+package DGU_AI_LAB.admin_be.domain.admins.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 
