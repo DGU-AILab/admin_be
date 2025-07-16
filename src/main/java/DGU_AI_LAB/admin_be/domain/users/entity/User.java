@@ -28,6 +28,12 @@ public class User extends BaseTimeEntity {
     @Column(name = "is_active", nullable = false)
     private Boolean isActive = true;
 
+    public void updateUserInfo(String username, String password, Boolean isActive) {
+        this.username = username;
+        this.password = password;
+        this.isActive = isActive;
+    }
+
     @ManyToOne
     @JoinColumn(name = "resource_group_id", nullable = false)
     private ResourceGroup resourceGroup;
@@ -36,5 +42,6 @@ public class User extends BaseTimeEntity {
     // 여러 PC에서 접속하면 그만큼 키의 수가 늘어남.
     @OneToMany(mappedBy = "user")
     private List<UserKey> userKeys;
+
 
 }
