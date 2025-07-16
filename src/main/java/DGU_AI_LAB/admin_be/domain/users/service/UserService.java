@@ -21,52 +21,65 @@ public class UserService {
     private final UsedIdRepository usedIdRepository;
     private final UserRepository userRepository;
 
-    // Create
+    /**
+     * 유저 생성
+     */
     @Transactional
     public User createUser(User user) {
         return userRepository.save(user);
     }
 
-    // Read - 단일 건
-    public User getUserById(Long id) {
-        return userRepository.findById(id)
+    /**
+     * 단일 유저 조회
+     */
+    public User getUserById(Long userId) {
+        return userRepository.findById(userId)
                 .orElseThrow(() -> new EntityNotFoundException(ErrorCode.ENTITY_NOT_FOUND));
     }
 
-    // Read - 전체
+    /**
+     * 전체 유저 조회
+     */
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
-    // Update
+    /**
+     * 유저 삭제
+     */
     @Transactional
-    public User updateUser(Long id, User updatedUser) {
-        User user = getUserById(id);
-        user.setUsername(updatedUser.getUsername());
-        user.setPasswordHash(updatedUser.getPasswordHash());
-        user.setIsActive(updatedUser.getIsActive());
-        return userRepository.save(user);
+    public void deleteUser(Long userId) {
+        userRepository.deleteById(userId);
     }
 
-    // Delete
+    /**
+     * 유저 정보 수정
+     */
     @Transactional
-    public void deleteUser(Long id) {
-        userRepository.deleteById(id);
+    public User updateUser(Long userId, User updatedUser) {
+        User user = getUserById(userId);
+        user.updateUserInfo(
+                updatedUser.getUsername(),
+                updatedUser.getPassword(),
+                updatedUser.getIsActive()
+        );
+        return user;
     }
 
-    // 사용하지 않는 다음 Uid, Gid 를 가져오기 위함
+    /**
+     * 사용하지 않은 UID/GID를 찾아 할당
+     */
     @Transactional
     public Long allocateNextAvailableUidGid() {
-        int base = 10000;
+        long base = 10_000L;
 
         for (long candidate = base; candidate < Integer.MAX_VALUE; candidate++) {
             if (!usedIdRepository.existsById(candidate)) {
-                UsedId newId = new UsedId();
-                newId.setId(candidate); // manually set ID
-                usedIdRepository.save(newId);
+                usedIdRepository.save(UsedId.builder().id(candidate).build());
                 return candidate;
             }
         }
+
         throw new InternalServerException(ErrorCode.INTERNAL_SERVER_ERROR);
     }
 }
