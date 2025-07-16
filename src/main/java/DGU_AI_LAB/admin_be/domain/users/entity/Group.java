@@ -1,15 +1,14 @@
 package DGU_AI_LAB.admin_be.domain.users.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Table(name = "groups")
 @Getter
-@Setter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
+@Builder
 public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -2,17 +2,16 @@ package DGU_AI_LAB.admin_be.domain.users.entity;
 
 import DGU_AI_LAB.admin_be.global.common.BaseTimeEntity;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "user_keys")
 @Getter
-@Setter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
+@Builder
 public class UserKey extends BaseTimeEntity {
 
     @Id
