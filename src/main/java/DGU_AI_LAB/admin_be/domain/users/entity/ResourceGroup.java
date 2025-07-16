@@ -14,7 +14,7 @@ public class ResourceGroup {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "resource_group_id")
-    private Long resoureGroupId;
+    private Long resourceGroupId;
 
     @Column(name = "resource_group_name", nullable = false, unique = true)
     private String resourceGroupName;
