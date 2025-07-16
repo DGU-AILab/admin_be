@@ -5,6 +5,7 @@ import DGU_AI_LAB.admin_be.domain.users.dto.request.UserUpdateRequestDTO;
 import DGU_AI_LAB.admin_be.domain.users.entity.User;
 import DGU_AI_LAB.admin_be.domain.users.service.UserService;
 import DGU_AI_LAB.admin_be.global.common.SuccessResponse;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,12 +30,12 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<SuccessResponse<?>> createUser(@RequestBody UserCreateRequestDTO request) {
+    public ResponseEntity<SuccessResponse<?>> createUser(@Valid @RequestBody UserCreateRequestDTO request) {
         return SuccessResponse.ok(userService.createUser(request));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<SuccessResponse<?>> updateUser(@PathVariable Long id, @RequestBody UserUpdateRequestDTO request) {
+    public ResponseEntity<SuccessResponse<?>> updateUser(@PathVariable Long id, @Valid @RequestBody UserUpdateRequestDTO request) {
         return SuccessResponse.ok(userService.updateUser(id, request));
     }
 
