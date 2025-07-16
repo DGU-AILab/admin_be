@@ -14,11 +14,12 @@ public class ResourceGroup {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @Column(name = "resource_group_id")
+    private Long resoureGroupId;
 
-    @Column(nullable = false, unique = true)
-    private String resource_group_name;
+    @Column(name = "resource_group_name", nullable = false, unique = true)
+    private String resourceGroupName;
 
-    @Column(columnDefinition = "TEXT")
-    private  String resource_group_description;
+    @Column(name = "resource_group_description", columnDefinition = "TEXT")
+    private String resourceGroupDescription;
 }
