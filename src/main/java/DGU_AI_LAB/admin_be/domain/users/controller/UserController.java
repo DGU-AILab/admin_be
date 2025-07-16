@@ -1,5 +1,7 @@
 package DGU_AI_LAB.admin_be.domain.users.controller;
 
+import DGU_AI_LAB.admin_be.domain.users.dto.request.UserCreateRequestDTO;
+import DGU_AI_LAB.admin_be.domain.users.dto.request.UserUpdateRequestDTO;
 import DGU_AI_LAB.admin_be.domain.users.entity.User;
 import DGU_AI_LAB.admin_be.domain.users.service.UserService;
 import DGU_AI_LAB.admin_be.global.common.SuccessResponse;
@@ -11,15 +13,10 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/user")
+@RequestMapping("/api/users")
 public class UserController {
 
     private final UserService userService;
-
-    @PostMapping
-    public ResponseEntity<SuccessResponse<?>> createUser(@RequestBody User user) {
-        return SuccessResponse.ok(userService.createUser(user));
-    }
 
     @GetMapping("/{id}")
     public ResponseEntity<SuccessResponse<?>> getUser(@PathVariable Long id) {
@@ -31,9 +28,14 @@ public class UserController {
         return SuccessResponse.ok(userService.getAllUsers());
     }
 
+    @PostMapping
+    public ResponseEntity<SuccessResponse<?>> createUser(@RequestBody UserCreateRequestDTO request) {
+        return SuccessResponse.ok(userService.createUser(request));
+    }
+
     @PutMapping("/{id}")
-    public ResponseEntity<SuccessResponse<?>> updateUser(@PathVariable Long id, @RequestBody User user) {
-        return SuccessResponse.ok(userService.updateUser(id, user));
+    public ResponseEntity<SuccessResponse<?>> updateUser(@PathVariable Long id, @RequestBody UserUpdateRequestDTO request) {
+        return SuccessResponse.ok(userService.updateUser(id, request));
     }
 
     @DeleteMapping("/{id}")
@@ -42,3 +44,4 @@ public class UserController {
         return SuccessResponse.ok(null);
     }
 }
+
