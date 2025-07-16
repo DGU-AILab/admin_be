@@ -17,7 +17,8 @@ public class UserKey extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "user_key_id")
+    private Long userKeyId;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "user_id")
@@ -32,8 +33,4 @@ public class UserKey extends BaseTimeEntity {
     @Column(name = "is_active", nullable = false)
     private Boolean isActive = true;
 
-    @PrePersist
-    protected void onCreate() {
-        this.createdAt = LocalDateTime.now();
-    }
 }
