@@ -12,18 +12,19 @@ import lombok.*;
 public class Node {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @Column(name = "node_id")
+    private Long nodeId;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "resource_group_id")
-    private ResourceGroup resource_group;
+    private ResourceGroup resourceGroup;
 
     @Column(name = "node_name", nullable = false, unique = true)
     private String nodeName;
 
-    @Column(name = "server_address")
-    private String serverAddress;
-
+    @Builder.Default
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private String status = "active";
+    private NodeStatus status = NodeStatus.ACTIVE;
+
 }
