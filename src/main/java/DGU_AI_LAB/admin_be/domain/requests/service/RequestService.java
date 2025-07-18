@@ -1,7 +1,7 @@
 package DGU_AI_LAB.admin_be.domain.requests.service;
 
 import DGU_AI_LAB.admin_be.domain.requests.dto.request.RequestAnswerDTO;
-import DGU_AI_LAB.admin_be.domain.requests.dto.request.RequestDTO;
+import DGU_AI_LAB.admin_be.domain.requests.dto.request.SaveRequestDTO;
 import DGU_AI_LAB.admin_be.domain.requests.entity.Answer;
 import DGU_AI_LAB.admin_be.domain.requests.entity.Request;
 import DGU_AI_LAB.admin_be.domain.requests.repository.RequestRepository;
@@ -18,15 +18,15 @@ public class RequestService {
     private final RequestRepository requestRepository;
 
     @Transactional
-    public Request saveRequest(RequestDTO UseRequest) {
+    public Request saveRequest(SaveRequestDTO UseRequest) {
         Request request = Request.builder()
-                .serverName(UseRequest.getServerName())
+                .serverName(UseRequest.serverName())
                 .build();
 
-        List<Answer> answers = UseRequest.getAnswers().stream()
+        List<Answer> answers = UseRequest.answers().stream()
                 .map(dto -> Answer.builder()
-                        .question(dto.getQuestion())
-                        .response(dto.getResponse())
+                        .question(dto.question())
+                        .response(dto.response())
                         .request(request)
                         .build())
                 .toList();
@@ -37,9 +37,9 @@ public class RequestService {
     }
 
     // 전체 사용 신청 목록 조회
-    public List<RequestDTO> getAllRequests() {
+    public List<SaveRequestDTO> getAllRequests() {
         return requestRepository.findAll().stream()
-                .map(request -> new RequestDTO(
+                .map(request -> new SaveRequestDTO(
                         request.getRequestId(),
                         request.getServerName(),
                         request.getAnswers().stream()
@@ -50,11 +50,11 @@ public class RequestService {
     }
 
     // 개별 사용 신청 조회
-    public RequestDTO getRequestById(Long id) {
+    public SaveRequestDTO getRequestById(Long id) {
         Request request = requestRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Request not found with id " + id));
 
-        return new RequestDTO(
+        return new SaveRequestDTO(
                 request.getRequestId(),
                 request.getServerName(),
                 request.getAnswers().stream()

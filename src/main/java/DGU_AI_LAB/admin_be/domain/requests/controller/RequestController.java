@@ -1,6 +1,6 @@
 package DGU_AI_LAB.admin_be.domain.requests.controller;
 
-import DGU_AI_LAB.admin_be.domain.requests.dto.request.RequestDTO;
+import DGU_AI_LAB.admin_be.domain.requests.dto.request.SaveRequestDTO;
 import DGU_AI_LAB.admin_be.domain.requests.service.RequestService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +14,7 @@ public class RequestController {
     private final RequestService requestService;
 
     @PostMapping
-    public ResponseEntity<?> saveRequest(@RequestBody RequestDTO request) {
+    public ResponseEntity<?> saveRequest(@RequestBody SaveRequestDTO request) {
         return ResponseEntity.ok(requestService.saveRequest(request));
     }
 
@@ -26,7 +26,7 @@ public class RequestController {
 
     // 개별 사용 신청 목록 조회
     @GetMapping("/{id}")
-    public ResponseEntity<RequestDTO> getRequest(@PathVariable Long id) {
+    public ResponseEntity<SaveRequestDTO> getRequest(@PathVariable Long id) {
         return ResponseEntity.ok(requestService.getRequestById(id));
     }
 }

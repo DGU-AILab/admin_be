@@ -1,13 +1,15 @@
 package DGU_AI_LAB.admin_be.domain.requests.dto.request;
 
-import lombok.*;
+import DGU_AI_LAB.admin_be.domain.requests.entity.Answer;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
-public class RequestAnswerDTO {
-    private String question;
-    private String response;
+public record RequestAnswerDTO(
+        String question,
+        String response
+) {
+    public static RequestAnswerDTO fromEntity(Answer answer) {
+        return new RequestAnswerDTO(
+                answer.getQuestion(),
+                answer.getResponse()
+        );
+    }
 }
