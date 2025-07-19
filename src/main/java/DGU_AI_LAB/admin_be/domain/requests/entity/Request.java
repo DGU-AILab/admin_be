@@ -23,6 +23,5 @@ public class Request extends BaseTimeEntity  {
 
     @Builder.Default
     @OneToMany(mappedBy = "request", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
     private List<Answer> answers = new ArrayList<>();
 }
