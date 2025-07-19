@@ -5,6 +5,7 @@ import DGU_AI_LAB.admin_be.domain.requests.service.RequestService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/requests")
@@ -14,7 +15,7 @@ public class RequestController {
     private final RequestService requestService;
 
     @PostMapping
-    public ResponseEntity<?> saveRequest(@RequestBody SaveRequestDTO request) {
+    public ResponseEntity<?> saveRequest(@Valid @RequestBody SaveRequestDTO request) {
         return ResponseEntity.ok(requestService.saveRequest(request));
     }
 

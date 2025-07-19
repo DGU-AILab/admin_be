@@ -4,11 +4,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 import DGU_AI_LAB.admin_be.domain.requests.entity.Request;
 import DGU_AI_LAB.admin_be.domain.requests.entity.Answer;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
 
 public record SaveRequestDTO(
         Long requestId,
-        String serverName,
-        List<RequestAnswerDTO> answers
+        @NotBlank String serverName,
+        @NotNull List<RequestAnswerDTO> answers
 ) {
     public static SaveRequestDTO fromEntity(Request request) {
         List<RequestAnswerDTO> answerDTOs = request.getAnswers().stream()

@@ -2,9 +2,10 @@ package DGU_AI_LAB.admin_be.domain.requests.dto.request;
 
 import DGU_AI_LAB.admin_be.domain.requests.entity.Answer;
 import DGU_AI_LAB.admin_be.domain.requests.entity.Request;
+import jakarta.validation.constraints.NotBlank;
 
 public record RequestAnswerDTO(
-        String question,
+        @NotBlank String question,
         String response
 ) {
     public static RequestAnswerDTO fromEntity(Answer answer) {
