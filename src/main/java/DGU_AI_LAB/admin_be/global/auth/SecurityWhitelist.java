@@ -12,7 +12,8 @@ public class SecurityWhitelist {
     };
 
     public static final List<String> EXACT_SKIP_PATHS = List.of(
-            "/", "/swagger-ui", "/v3/api-docs", "/auth/callback", "/api/auth/login", "/api/auth/register"
+            "/", "/swagger-ui", "/v3/api-docs", "/auth/callback", "/api/auth/login", "/api/auth/register",
+            "/actuator/health", "/actuator/info"
     );
 
     public static final List<String> PATTERN_SKIP_PATHS = List.of(
