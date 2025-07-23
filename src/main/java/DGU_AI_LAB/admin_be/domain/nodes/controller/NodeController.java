@@ -35,9 +35,4 @@ public class NodeController {
         return SuccessResponse.ok(response);
     }
 
-    @GetMapping("/nodes/available")
-    public ResponseEntity<?> getAvailableNodes() {
-        List<NodeResponse> response = nodeService.getAvailableNodes();
-        return SuccessResponse.ok(response);
-    }
 }

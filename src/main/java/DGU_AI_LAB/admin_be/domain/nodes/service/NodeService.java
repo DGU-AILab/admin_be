@@ -41,10 +41,4 @@ public class NodeService {
         return NodeResponse.fromEntity(node);
     }
 
-    public List<NodeResponse> getAvailableNodes() {
-        return nodeRepository.findByIsAvailableTrue()
-                .stream()
-                .map(NodeResponse::fromEntity)
-                .toList();
-    }
 }

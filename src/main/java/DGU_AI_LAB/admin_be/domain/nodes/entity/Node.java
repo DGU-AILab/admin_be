@@ -30,5 +30,6 @@ public class Node {
     @ManyToOne(optional = false)
     @JoinColumn(name = "resource_group_id")
     private ResourceGroup resourceGroup;
+
 }
 
