@@ -1,4 +1,4 @@
-package DGU_AI_LAB.admin_be.domain.nodes;
+package DGU_AI_LAB.admin_be.domain.nodes.entity;
 
 import DGU_AI_LAB.admin_be.domain.resourceGroups.entity.ResourceGroup;
 import jakarta.persistence.*;
