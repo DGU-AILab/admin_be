@@ -80,7 +80,12 @@ public enum ErrorCode {
     /**
      * Resource Group Error
      */
-    RESOURCE_GROUP_NOT_FOUND(HttpStatus.NOT_FOUND, "리소스 그룹을 찾을 수 없습니다.");
+    RESOURCE_GROUP_NOT_FOUND(HttpStatus.NOT_FOUND, "리소스 그룹을 찾을 수 없습니다."),
+
+    /**
+     * Node Error
+     */
+    NODE_NOT_FOUND(HttpStatus.NOT_FOUND, "노드를 찾을 수 없습니다.")
 
 
     ;
