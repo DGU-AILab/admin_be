@@ -31,10 +31,6 @@ public class RequestProcessingService {
 
     @Transactional
     public ApprovalResponseDTO approveRequest(RequestApproveDTO request) {
-        // 예외처리
-        // not found
-        // 이미 처리된 신청
-
         // 자원그룹 조회
         ResourceGroup resourceGroup = resourceGroupRepository.findById(request.resource_group_id())
                 .orElseThrow(() -> new BusinessException(ErrorCode.RESOURCE_NOT_FOUND));
@@ -49,6 +45,6 @@ public class RequestProcessingService {
 
     public ApprovalInfo getApprovalInfoById(Long id) {
         return approvalInfoRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("해당 ID의 승인 정보가 존재하지 않습니다."));
+                .orElseThrow(() -> new BusinessException(ErrorCode.RESOURCE_NOT_FOUND));
     }
 }
