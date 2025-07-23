@@ -70,8 +70,17 @@ public enum ErrorCode {
     USER_NOT_FOUND(HttpStatus.NOT_FOUND, "사용자를 찾을 수 없습니다."),
     USER_ALREADY_EXISTS(HttpStatus.CONFLICT, "이미 가입된 사용자입니다."),
     DUPLICATE_NAME(HttpStatus.CONFLICT, "중복된 닉네임입니다."),
-    INVALID_LOGIN_INFO(HttpStatus.BAD_REQUEST, "잘못된 로그인 입력값입니다.")
+    INVALID_LOGIN_INFO(HttpStatus.BAD_REQUEST, "잘못된 로그인 입력값입니다."),
 
+    /**
+     * Approval Error
+     */
+    USER_APPROVAL_NOT_FOUND(HttpStatus.NOT_FOUND, "해당 유저의 승인 정보를 찾을 수 없습니다."),
+
+    /**
+     * Resource Group Error
+     */
+    RESOURCE_GROUP_NOT_FOUND(HttpStatus.NOT_FOUND, "리소스 그룹을 찾을 수 없습니다.");
 
 
     ;
