@@ -36,12 +36,12 @@ public class UserService {
      */
     @Transactional
     public UserResponseDTO createUser(UserCreateRequestDTO request) {
-        log.info("[createUser] username={}, resourceGroupId={}", request.username(), request.resourceGroupId());
+        log.info("[createUser] name={}", request.name());
 
-        ResourceGroup resourceGroup = resourceGroupRepository.findById(request.resourceGroupId())
-                .orElseThrow(() -> new EntityNotFoundException(ErrorCode.ENTITY_NOT_FOUND));
+        /* ResourceGroup resourceGroup = resourceGroupRepository.findById(request.resourceGroupId())
+                .orElseThrow(() -> new EntityNotFoundException(ErrorCode.ENTITY_NOT_FOUND));*/
 
-        User user = request.toEntity(resourceGroup);
+        User user = request.toEntity();
         User saved = userRepository.save(user);
 
         log.info("[createUser] user created with userId={}", saved.getUserId());
@@ -93,7 +93,6 @@ public class UserService {
                 .orElseThrow(() -> new EntityNotFoundException(ErrorCode.ENTITY_NOT_FOUND));
 
         user.updateUserInfo(
-                request.username(),
                 request.password(),
                 request.isActive()
         );
