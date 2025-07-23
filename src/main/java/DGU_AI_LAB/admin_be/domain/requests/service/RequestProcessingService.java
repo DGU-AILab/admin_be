@@ -47,4 +47,9 @@ public class RequestProcessingService {
         return approvalInfoRepository.findById(id)
                 .orElseThrow(() -> new BusinessException(ErrorCode.RESOURCE_NOT_FOUND));
     }
+
+    @Transactional
+    public int rejectRequest() {
+        return 200;
+    }
 }

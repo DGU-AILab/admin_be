@@ -26,4 +26,10 @@ public class RequestProcessingController {
         ApprovalInfo approvalInfo = requestProcessingService.getApprovalInfoById(id);
         return ResponseEntity.ok(approvalInfo);
     }
+
+    @PostMapping("/reject")
+    public ResponseEntity<?> reject() {
+        requestProcessingService.rejectRequest();
+        return ResponseEntity.ok().build();
+    }
 }
