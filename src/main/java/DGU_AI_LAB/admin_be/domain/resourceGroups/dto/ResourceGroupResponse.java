@@ -9,7 +9,6 @@ public record ResourceGroupResponse(
         Long id,
         String name,
         GroupType groupType,
-        Integer groupNumber,
         String description
 ) {
     public static ResourceGroupResponse fromEntity(ResourceGroup group) {
@@ -17,7 +16,6 @@ public record ResourceGroupResponse(
                 .id(group.getResourceGroupId())
                 .name(group.getResourceGroupName())
                 .groupType(group.getGroupType())
-                .groupNumber(group.getGroupNumber())
                 .description(group.getResourceGroupDescription())
                 .build();
     }
