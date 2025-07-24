@@ -8,6 +8,7 @@ import java.util.Optional;
 
 @Repository
 public interface UserRepository extends JpaRepository<User,Long> {
-    Optional<User> findByUsername(String username);
-    Optional<User> findByUsernameAndIsActiveTrue(String username);
+    // TODO: username을 없애버린 것 같은데 그럼 이부분도 맞춰서 수정이 필요합니다! 어디서 쓰고있었는지??
+    /* Optional<User> findByUsername(String username);
+    Optional<User> findByUsernameAndIsActiveTrue(String username);*/
 }

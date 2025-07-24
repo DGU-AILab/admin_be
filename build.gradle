@@ -34,6 +34,9 @@ dependencies {
 	//spring security
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 
+	// Actuator
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
 	// mysql
 	implementation 'mysql:mysql-connector-java:8.0.32'
 
@@ -54,6 +57,7 @@ dependencies {
 
 	// smtp
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
+
 }
 
 tasks.named('test') {

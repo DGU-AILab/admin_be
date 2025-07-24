@@ -3,9 +3,9 @@ package DGU_AI_LAB.admin_be.domain.users.service;
 import DGU_AI_LAB.admin_be.domain.users.dto.request.UserCreateRequestDTO;
 import DGU_AI_LAB.admin_be.domain.users.dto.response.UserResponseDTO;
 import DGU_AI_LAB.admin_be.domain.users.dto.request.UserUpdateRequestDTO;
-import DGU_AI_LAB.admin_be.domain.users.entity.ResourceGroup;
+import DGU_AI_LAB.admin_be.domain.resourceGroups.entity.ResourceGroup;
 import DGU_AI_LAB.admin_be.domain.users.entity.User;
-import DGU_AI_LAB.admin_be.domain.users.repository.ResourceGroupRepository;
+import DGU_AI_LAB.admin_be.domain.resourceGroups.repository.ResourceGroupRepository;
 import DGU_AI_LAB.admin_be.domain.users.repository.UserRepository;
 import DGU_AI_LAB.admin_be.error.ErrorCode;
 import DGU_AI_LAB.admin_be.error.exception.EntityNotFoundException;
@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
+@Transactional
 public class UserService {
 
     private final UsedIdRepository usedIdRepository;
@@ -36,12 +36,12 @@ public class UserService {
      */
     @Transactional
     public UserResponseDTO createUser(UserCreateRequestDTO request) {
-        log.info("[createUser] username={}, resourceGroupId={}", request.username(), request.resourceGroupId());
+        log.info("[createUser] name={}", request.name());
 
-        ResourceGroup resourceGroup = resourceGroupRepository.findById(request.resourceGroupId())
-                .orElseThrow(() -> new EntityNotFoundException(ErrorCode.ENTITY_NOT_FOUND));
+        /* ResourceGroup resourceGroup = resourceGroupRepository.findById(request.resourceGroupId())
+                .orElseThrow(() -> new EntityNotFoundException(ErrorCode.ENTITY_NOT_FOUND));*/
 
-        User user = request.toEntity(resourceGroup);
+        User user = request.toEntity();
         User saved = userRepository.save(user);
 
         log.info("[createUser] user created with userId={}", saved.getUserId());
@@ -52,6 +52,7 @@ public class UserService {
     /**
      * 단일 유저 조회
      */
+    @Transactional(readOnly = true)
     public UserResponseDTO getUserById(Long userId) {
         log.debug("[getUserById] userId={}", userId);
         return UserResponseDTO.fromEntity(userRepository.findById(userId)
@@ -61,6 +62,7 @@ public class UserService {
     /**
      * 전체 유저 조회
      */
+    @Transactional(readOnly = true)
     public List<UserResponseDTO> getAllUsers() {
         log.debug("[getAllUsers] 전체 유저 조회 시작");
         return userRepository.findAll().stream()
@@ -93,7 +95,6 @@ public class UserService {
                 .orElseThrow(() -> new EntityNotFoundException(ErrorCode.ENTITY_NOT_FOUND));
 
         user.updateUserInfo(
-                request.username(),
                 request.password(),
                 request.isActive()
         );
