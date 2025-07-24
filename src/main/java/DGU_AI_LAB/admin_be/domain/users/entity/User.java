@@ -24,6 +24,7 @@ public class User extends BaseTimeEntity {
     private String name;
 
     // 우분투 계정 이름
+    // TODO: username을 User에 넣을지, Approval에 넣을지 고민 필요
     @Column(name = "username", nullable = false)
     private String username;
 
