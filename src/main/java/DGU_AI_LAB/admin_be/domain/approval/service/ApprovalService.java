@@ -21,11 +21,12 @@ public class ApprovalService {
 
     public ApprovalResponseDTO getApprovalByUsername(String username) {
         Approval approval = approvalRepository
-                .findFirstByUsernameAndUserIsNotNullOrderByCreatedAtDesc(username)
+                .findFirstByUsernameOrderByCreatedAtDesc(username)
                 .orElseThrow(() -> new BusinessException(ErrorCode.USER_APPROVAL_NOT_FOUND));
 
         return ApprovalResponseDTO.fromEntity(approval);
     }
+
 
     public void createApproval(ApprovalCreateRequest request) {
         var user = userRepository.findById(request.userId())

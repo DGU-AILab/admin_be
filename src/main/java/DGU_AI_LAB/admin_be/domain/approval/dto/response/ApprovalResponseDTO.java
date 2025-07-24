@@ -42,7 +42,6 @@ public record ApprovalResponseDTO(
                                 .id(group.getResourceGroupId())
                                 .name(group.getResourceGroupName())
                                 .groupType(group.getGroupType())
-                                .groupNumber(group.getGroupNumber())
                                 .build()
                 )
                 .build();

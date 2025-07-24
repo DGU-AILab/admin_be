@@ -8,5 +8,5 @@ import java.util.Optional;
 
 @Repository
 public interface ApprovalRepository extends JpaRepository<Approval, Long> {
-    Optional<Approval> findFirstByUsernameAndUserIsNotNullOrderByCreatedAtDesc(String username);
+    Optional<Approval> findFirstByUsernameOrderByCreatedAtDesc(String username);
 }
