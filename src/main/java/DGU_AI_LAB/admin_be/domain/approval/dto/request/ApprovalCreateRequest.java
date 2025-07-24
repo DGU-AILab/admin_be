@@ -34,7 +34,10 @@ public record ApprovalCreateRequest(
 
         @NotNull
         @Schema(enumAsRef = true)
-        ServerName serverName
+        ServerName serverName,
+
+        @NotNull
+        Long requestId
 
 ) {
     public Approval toEntity(User user, ResourceGroup group) {

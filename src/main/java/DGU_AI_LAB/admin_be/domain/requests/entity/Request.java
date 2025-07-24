@@ -29,4 +29,8 @@ public class Request extends BaseTimeEntity  {
     @Builder.Default
     @OneToMany(mappedBy = "request", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Answer> answers = new ArrayList<>();
+
+    public void updateStatus(Status status) {
+        this.status = status;
+    }
 }
