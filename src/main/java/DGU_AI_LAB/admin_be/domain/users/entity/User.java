@@ -19,6 +19,9 @@ public class User extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
 
+    /**
+    ubuntu username은 Approval에서 관리한다.
+     */
     // 사용자 실제 이름
     @Column(name = "name", nullable = false)
     private String name;
@@ -47,8 +50,11 @@ public class User extends BaseTimeEntity {
         this.isActive = isActive;
     }
 
-    // 한 명의 유저가 여러 개의 키를 사용할 수 있음.
-    // 여러 PC에서 접속하면 그만큼 키의 수가 늘어남.
+    /**
+     * 한 명의 유저가 여러 개의 키를 사용할 수 있음.
+     *     // 여러 PC에서 접속하면 그만큼 키의 수가 늘어남.
+     */
+    //
     @OneToMany(mappedBy = "user")
     private List<UserKey> userKeys;
 
