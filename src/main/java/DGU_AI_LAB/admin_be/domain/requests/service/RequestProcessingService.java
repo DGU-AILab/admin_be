@@ -57,7 +57,7 @@ public class RequestProcessingService {
 
         // 승인 정보 저장
         Approval approval = approvalRepository.save(
-                request.toApprovalEntity(resourceGroup, user)
+                request.toApprovalEntity(passwordEncoder, defaultPassword, resourceGroup, user)
         );
 
         return ApprovalResponseDTO.fromEntity(approval);
