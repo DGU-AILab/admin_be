@@ -1,6 +1,8 @@
 package DGU_AI_LAB.admin_be.domain.nodes.controller;
 
-import DGU_AI_LAB.admin_be.domain.nodes.dto.NodeResponse;
+import DGU_AI_LAB.admin_be.domain.nodes.controller.docs.NodeApi;
+import DGU_AI_LAB.admin_be.domain.nodes.dto.request.NodeCreateRequest;
+import DGU_AI_LAB.admin_be.domain.nodes.dto.response.NodeResponse;
 import DGU_AI_LAB.admin_be.domain.nodes.service.NodeService;
 import DGU_AI_LAB.admin_be.global.common.SuccessResponse;
 import jakarta.validation.Valid;
@@ -13,7 +15,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/resources")
-public class NodeController {
+public class NodeController implements NodeApi {
 
     private final NodeService nodeService;
 

@@ -1,12 +1,13 @@
 package DGU_AI_LAB.admin_be.domain.requests.dto.request;
 
-import DGU_AI_LAB.admin_be.domain.users.entity.ResourceGroup;
+import DGU_AI_LAB.admin_be.domain.approval.entity.Approval;
+import DGU_AI_LAB.admin_be.domain.resourceGroups.entity.ResourceGroup;
 import DGU_AI_LAB.admin_be.domain.users.entity.User;
-import DGU_AI_LAB.admin_be.domain.approval.entity.ApprovalInfo;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import DGU_AI_LAB.admin_be.domain.users.entity.Role;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
 import java.time.LocalDateTime;
 
 public record RequestApproveDTO(
@@ -30,16 +31,13 @@ public record RequestApproveDTO(
                 .build();
     }
 
-    public ApprovalInfo toApprovalInfoEntity(PasswordEncoder passwordEncoder, String defaultPassword, ResourceGroup resourceGroup, User user) {
-        return ApprovalInfo.builder()
+    public Approval toApprovalEntity(ResourceGroup resourceGroup, User user) {
+        return Approval.builder()
                 .user(user)
-                .username(username)
-                .password(passwordEncoder.encode(defaultPassword))
-                .serverName(serverName)
                 .resourceGroup(resourceGroup)
                 .validDate(validDate)
-                .volumeSize(volumeSize)
-                // uid, image_id
+                .volumeSize(volumeSize.intValue()) // TODO: 여기 수정 필요 (Integer, Long)
+                .approved(true)
                 .build();
     }
 }

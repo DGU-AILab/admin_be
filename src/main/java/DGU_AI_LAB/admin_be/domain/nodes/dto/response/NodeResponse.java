@@ -1,4 +1,4 @@
-package DGU_AI_LAB.admin_be.domain.nodes.dto;
+package DGU_AI_LAB.admin_be.domain.nodes.dto.response;
 
 import DGU_AI_LAB.admin_be.domain.nodes.entity.Node;
 import lombok.Builder;

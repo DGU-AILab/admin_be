@@ -15,7 +15,7 @@ public class ResourceGroup {
     private Long resourceGroupId;
 
     @Column(nullable = false, unique = true)
-    private String resourceGroupName; // ex: 3090Ti_Group
+    private String resourceGroupName; // ex: 3090ti
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)

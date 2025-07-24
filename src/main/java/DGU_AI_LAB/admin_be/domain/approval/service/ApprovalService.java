@@ -1,7 +1,7 @@
 package DGU_AI_LAB.admin_be.domain.approval.service;
 
-import DGU_AI_LAB.admin_be.domain.approval.dto.ApprovalCreateRequest;
-import DGU_AI_LAB.admin_be.domain.approval.dto.ApprovalResponse;
+import DGU_AI_LAB.admin_be.domain.approval.dto.request.ApprovalCreateRequest;
+import DGU_AI_LAB.admin_be.domain.approval.dto.response.ApprovalResponseDTO;
 import DGU_AI_LAB.admin_be.domain.approval.entity.Approval;
 import DGU_AI_LAB.admin_be.domain.approval.repository.ApprovalRepository;
 import DGU_AI_LAB.admin_be.domain.resourceGroups.repository.ResourceGroupRepository;
@@ -19,26 +19,14 @@ public class ApprovalService {
     private final UserRepository userRepository;
     private final ResourceGroupRepository resourceGroupRepository;
 
-    public ApprovalResponse getApprovalByUsername(String username) {
+    public ApprovalResponseDTO getApprovalByUsername(String username) {
         Approval approval = approvalRepository
-                .findFirstByUserUsernameAndApprovedIsTrueOrderByCreatedAtDesc(username)
+                .findFirstByUserNameAndApprovedIsTrueOrderByCreatedAtDesc(username)
                 .orElseThrow(() -> new BusinessException(ErrorCode.USER_APPROVAL_NOT_FOUND));
 
-        var group = approval.getResourceGroup();
+        // var group = approval.getResourceGroup();
+        return ApprovalResponseDTO.fromEntity(approval);
 
-        return ApprovalResponse.builder()
-                .username(approval.getUser().getUsername())
-                .volumeSize(approval.getVolumeSize())
-                .approvedAt(approval.getCreatedAt())
-                .resourceGroup(
-                        ApprovalResponse.ResourceGroupDTO.builder()
-                                .id(group.getResourceGroupId())
-                                .name(group.getResourceGroupName())
-                                .groupType(group.getGroupType())
-                                .groupNumber(group.getGroupNumber())
-                                .build()
-                )
-                .build();
     }
 
     public void createApproval(ApprovalCreateRequest request) {

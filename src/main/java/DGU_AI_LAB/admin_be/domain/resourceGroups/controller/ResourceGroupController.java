@@ -1,5 +1,6 @@
 package DGU_AI_LAB.admin_be.domain.resourceGroups.controller;
 
+import DGU_AI_LAB.admin_be.domain.resourceGroups.controller.docs.ResourceGroupApi;
 import DGU_AI_LAB.admin_be.domain.resourceGroups.dto.ResourceGroupCreateRequest;
 import DGU_AI_LAB.admin_be.domain.resourceGroups.dto.ResourceGroupResponse;
 import DGU_AI_LAB.admin_be.domain.resourceGroups.service.ResourceGroupService;
@@ -14,7 +15,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/resources")
-public class ResourceGroupController {
+public class ResourceGroupController implements ResourceGroupApi {
 
     private final ResourceGroupService resourceGroupService;
 
