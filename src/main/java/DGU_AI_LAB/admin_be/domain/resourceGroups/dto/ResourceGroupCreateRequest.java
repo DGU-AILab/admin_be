@@ -18,9 +18,6 @@ public record ResourceGroupCreateRequest(
         @Schema(description = "그룹 타입", example = "FARM/LAB")
         @NotNull GroupType groupType,
 
-        @Schema(description = "몰라..뭐지?", example = "4")
-        @NotNull @Min(0) Integer groupNumber,
-
         @Schema(description = "기타 설명", example = "이 서버 특이사항은 ~")
         String description // optional
 ) {
@@ -28,7 +25,6 @@ public record ResourceGroupCreateRequest(
         return ResourceGroup.builder()
                 .resourceGroupName(name)
                 .groupType(groupType)
-                .groupNumber(groupNumber)
                 .resourceGroupDescription(description)
                 .build();
     }

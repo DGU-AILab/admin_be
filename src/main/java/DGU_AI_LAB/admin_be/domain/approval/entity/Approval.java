@@ -15,7 +15,6 @@ import java.time.LocalDateTime;
 @Builder
 @Entity
 public class Approval extends BaseTimeEntity{
-
     @Id
     @GeneratedValue
     private Long approvalId;
@@ -23,11 +22,18 @@ public class Approval extends BaseTimeEntity{
     @Column(nullable = false)
     private Integer volumeSize; // GB
 
-    @Column(nullable = false)
-    private Boolean approved; // true면 승인됨
-
     @Column(name = "validDate")
     private LocalDateTime validDate;
+
+    @Column(name = "username", nullable = false, unique = true)
+    private String username; // 우분투 계정 username
+
+    @Column(name = "password", nullable = false)
+    private String password; // 컨테이너 접속 비밀번호
+
+    @Column(name = "server_name", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private ServerName serverName; // 서버명, ex. FARM1, LAB4...
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "user_id")
@@ -36,15 +42,6 @@ public class Approval extends BaseTimeEntity{
     @ManyToOne(optional = false)
     @JoinColumn(name = "resource_group_id")
     private ResourceGroup resourceGroup;
-
-
-    /* TODO: 이 부분 필요한지 다시 논의해야 합니다!
-    @Column(nullable = false, unique = true)
-    private String username;
-
-    @Column(name = "password", nullable = false)
-    private String password;
-     */
 
 }
 

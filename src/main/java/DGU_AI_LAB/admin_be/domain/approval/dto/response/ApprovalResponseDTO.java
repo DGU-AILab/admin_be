@@ -1,7 +1,7 @@
 package DGU_AI_LAB.admin_be.domain.approval.dto.response;
 
 import DGU_AI_LAB.admin_be.domain.approval.entity.Approval;
-import DGU_AI_LAB.admin_be.domain.resourceGroups.entity.ResourceGroup;
+import DGU_AI_LAB.admin_be.domain.approval.entity.ServerName;
 import DGU_AI_LAB.admin_be.domain.resourceGroups.entity.GroupType;
 import lombok.Builder;
 
@@ -9,15 +9,20 @@ import java.time.LocalDateTime;
 
 @Builder
 public record ApprovalResponseDTO(
-        String username,
-        ResourceGroupDTO resourceGroup,
-        Integer volumeSize,
-        LocalDateTime approvedAt
+        Long approvalId,
+        String username,                  // ubuntu 계정명
+        Long userId,                      // 유저 ID
+        ResourceGroupDTO resourceGroup,   // 리소스 그룹 정보
+        Integer volumeSize,               // 볼륨 크기 (GB)
+        LocalDateTime validDate,          // 유효 기간
+        LocalDateTime approvedAt,         // 승인 일자
+        ServerName serverName             // 서버명 (ENUM)
 ) {
+
     @Builder
     public record ResourceGroupDTO(
             Long id,
-            String username,
+            String name,
             GroupType groupType,
             Integer groupNumber
     ) {}
@@ -25,18 +30,20 @@ public record ApprovalResponseDTO(
     public static ApprovalResponseDTO fromEntity(Approval approval) {
         var group = approval.getResourceGroup();
         return ApprovalResponseDTO.builder()
-                .username(approval.getUser().getUsername())
+                .approvalId(approval.getApprovalId())
+                .username(approval.getUsername())
+                .userId(approval.getUser().getUserId())
                 .volumeSize(approval.getVolumeSize())
+                .validDate(approval.getValidDate())
                 .approvedAt(approval.getCreatedAt())
+                .serverName(approval.getServerName())
                 .resourceGroup(
                         ResourceGroupDTO.builder()
                                 .id(group.getResourceGroupId())
-                                .username(group.getResourceGroupName())
+                                .name(group.getResourceGroupName())
                                 .groupType(group.getGroupType())
-                                .groupNumber(group.getGroupNumber())
                                 .build()
                 )
                 .build();
     }
-
 }

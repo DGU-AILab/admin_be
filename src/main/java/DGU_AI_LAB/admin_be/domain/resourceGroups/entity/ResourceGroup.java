@@ -19,10 +19,7 @@ public class ResourceGroup {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private GroupType groupType; // LAB / FARM
-
-    @Column(name = "group_number")
-    private Integer groupNumber;
+    private GroupType groupType; // LAB or FARM
 
     @Column(columnDefinition = "TEXT")
     private String resourceGroupDescription;

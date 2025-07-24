@@ -21,13 +21,12 @@ public class ApprovalService {
 
     public ApprovalResponseDTO getApprovalByUsername(String username) {
         Approval approval = approvalRepository
-                .findFirstByUserNameAndApprovedIsTrueOrderByCreatedAtDesc(username)
+                .findFirstByUsernameOrderByCreatedAtDesc(username)
                 .orElseThrow(() -> new BusinessException(ErrorCode.USER_APPROVAL_NOT_FOUND));
 
-        // var group = approval.getResourceGroup();
         return ApprovalResponseDTO.fromEntity(approval);
-
     }
+
 
     public void createApproval(ApprovalCreateRequest request) {
         var user = userRepository.findById(request.userId())
@@ -35,6 +34,7 @@ public class ApprovalService {
         var group = resourceGroupRepository.findById(request.resourceGroupId())
                 .orElseThrow(() -> new BusinessException(ErrorCode.RESOURCE_GROUP_NOT_FOUND));
 
-        approvalRepository.save(request.toEntity(user, group));
+        Approval approval = request.toEntity(user, group);
+        approvalRepository.save(approval);
     }
 }

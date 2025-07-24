@@ -37,7 +37,6 @@ public record RequestApproveDTO(
                 .resourceGroup(resourceGroup)
                 .validDate(validDate)
                 .volumeSize(volumeSize.intValue()) // TODO: 여기 수정 필요 (Integer, Long)
-                .approved(true)
                 .build();
     }
 }

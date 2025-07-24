@@ -9,7 +9,7 @@ public class SecurityWhitelist {
             "/api/auth/token/**", "/api/auth/login", "/api/auth/reissue",
             "/auth/callback/**", "/api/auth/register",
             "/actuator/health", "/actuator/info",
-            "/api/resources/**", "api/requests/**" // 제거 필요
+            "/api/users/**", "/api/resources/**", "/api/requests/**", "/api/approvals/**" // 제거 필요
     };
 
     public static final List<String> EXACT_SKIP_PATHS = List.of(
@@ -19,8 +19,7 @@ public class SecurityWhitelist {
 
     public static final List<String> PATTERN_SKIP_PATHS = List.of(
             // 여기에 토큰 필요없는 경로 작성
-            "/api/resources/**", // 제거 필요
-            "api/requests/**"
+            "/api/resources/**", "/api/requests/**", "/api/approvals/**", "/api/users/**" // 제거 필요
     );
 }
 
