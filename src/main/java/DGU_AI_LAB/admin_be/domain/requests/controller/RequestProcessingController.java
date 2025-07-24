@@ -1,7 +1,7 @@
 package DGU_AI_LAB.admin_be.domain.requests.controller;
 
-
 import DGU_AI_LAB.admin_be.domain.approval.entity.Approval;
+import DGU_AI_LAB.admin_be.domain.requests.controller.docs.RequestProcessingApi;
 import DGU_AI_LAB.admin_be.domain.requests.dto.request.RequestApproveDTO;
 import DGU_AI_LAB.admin_be.domain.requests.service.RequestProcessingService;
 import jakarta.validation.Valid;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/requests")
 @RequiredArgsConstructor
-public class RequestProcessingController {
+public class RequestProcessingController implements RequestProcessingApi {
 
     private final RequestProcessingService requestProcessingService;
 

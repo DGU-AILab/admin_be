@@ -1,5 +1,6 @@
 package DGU_AI_LAB.admin_be.domain.requests.controller;
 
+import DGU_AI_LAB.admin_be.domain.requests.controller.docs.RequestApi;
 import DGU_AI_LAB.admin_be.domain.requests.dto.request.SaveRequestDTO;
 import DGU_AI_LAB.admin_be.domain.requests.service.RequestService;
 import lombok.RequiredArgsConstructor;
@@ -10,7 +11,7 @@ import jakarta.validation.Valid;
 @RestController
 @RequestMapping("/api/requests")
 @RequiredArgsConstructor
-public class RequestController {
+public class RequestController implements RequestApi {
 
     private final RequestService requestService;
 
