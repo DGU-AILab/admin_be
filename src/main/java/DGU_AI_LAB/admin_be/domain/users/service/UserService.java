@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
+@Transactional
 public class UserService {
 
     private final UsedIdRepository usedIdRepository;
@@ -52,6 +52,7 @@ public class UserService {
     /**
      * 단일 유저 조회
      */
+    @Transactional(readOnly = true)
     public UserResponseDTO getUserById(Long userId) {
         log.debug("[getUserById] userId={}", userId);
         return UserResponseDTO.fromEntity(userRepository.findById(userId)
@@ -61,6 +62,7 @@ public class UserService {
     /**
      * 전체 유저 조회
      */
+    @Transactional(readOnly = true)
     public List<UserResponseDTO> getAllUsers() {
         log.debug("[getAllUsers] 전체 유저 조회 시작");
         return userRepository.findAll().stream()
