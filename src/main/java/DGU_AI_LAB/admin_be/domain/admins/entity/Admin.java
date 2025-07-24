@@ -12,6 +12,8 @@ import lombok.*;
 @Builder
 public class Admin extends BaseTimeEntity {
 
+    // TODO: ERD 수정하여 user와 분리할건지 확정 필요
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long adminId;

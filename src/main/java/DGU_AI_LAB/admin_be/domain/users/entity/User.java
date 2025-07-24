@@ -23,6 +23,10 @@ public class User extends BaseTimeEntity {
     @Column(name = "name", nullable = false)
     private String name;
 
+    // 우분투 계정 이름
+    @Column(name = "username", nullable = false)
+    private String username;
+
     // 웹 아이디
     @Column(name = "webId", nullable = false)
     private String webId;

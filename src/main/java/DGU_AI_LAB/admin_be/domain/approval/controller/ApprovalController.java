@@ -1,7 +1,7 @@
 package DGU_AI_LAB.admin_be.domain.approval.controller;
 
-import DGU_AI_LAB.admin_be.domain.approval.dto.ApprovalCreateRequest;
-import DGU_AI_LAB.admin_be.domain.approval.dto.ApprovalResponse;
+import DGU_AI_LAB.admin_be.domain.approval.dto.request.ApprovalCreateRequest;
+import DGU_AI_LAB.admin_be.domain.approval.dto.response.ApprovalResponseDTO;
 import DGU_AI_LAB.admin_be.domain.approval.service.ApprovalService;
 import DGU_AI_LAB.admin_be.global.common.SuccessResponse;
 import jakarta.validation.Valid;
@@ -18,7 +18,7 @@ public class ApprovalController {
 
     @GetMapping("/{username}")
     public ResponseEntity<?> getApproval(@PathVariable String username) {
-        ApprovalResponse response = approvalService.getApprovalByUsername(username);
+        ApprovalResponseDTO response = approvalService.getApprovalByUsername(username);
         return SuccessResponse.ok(response);
     }
 

@@ -1,6 +1,7 @@
 package DGU_AI_LAB.admin_be.domain.requests.controller;
 
-import DGU_AI_LAB.admin_be.domain.approval.entity.ApprovalInfo;
+
+import DGU_AI_LAB.admin_be.domain.approval.entity.Approval;
 import DGU_AI_LAB.admin_be.domain.requests.dto.request.RequestApproveDTO;
 import DGU_AI_LAB.admin_be.domain.requests.service.RequestProcessingService;
 import jakarta.validation.Valid;
@@ -22,9 +23,9 @@ public class RequestProcessingController {
     }
 
     @GetMapping("/approve/{id}")
-    public ResponseEntity<ApprovalInfo> getApprovalInfo(@PathVariable Long id) {
-        ApprovalInfo approvalInfo = requestProcessingService.getApprovalInfoById(id);
-        return ResponseEntity.ok(approvalInfo);
+    public ResponseEntity<Approval> getApprovalInfo(@PathVariable Long id) {
+        Approval approval = requestProcessingService.getApprovalInfoById(id);
+        return ResponseEntity.ok(approval);
     }
 
     @PostMapping("/reject")
