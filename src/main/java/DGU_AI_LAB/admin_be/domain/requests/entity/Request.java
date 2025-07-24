@@ -18,8 +18,13 @@ public class Request extends BaseTimeEntity  {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long requestId;
 
-    @Column(name = "serverName", nullable = false)
+    @Column(name = "server_name", nullable = false)
     private String serverName; // LAB or FARM
+
+    @Column(name = "status", nullable = false)
+    @Enumerated(EnumType.STRING)
+    @Builder.Default
+    private Status status = Status.HOLD;
 
     @Builder.Default
     @OneToMany(mappedBy = "request", cascade = CascadeType.ALL, orphanRemoval = true)
